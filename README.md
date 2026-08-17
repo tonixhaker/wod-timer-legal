@@ -1,7 +1,24 @@
 # WOD Timer — Legal & Landing
 
-Public site for the WOD Timer mobile app, served via GitHub Pages: landing page, privacy policy, terms of use.
+Public site for the WOD Timer mobile app, served via GitHub Pages.
+
+- `index.html` — landing page
+- `privacy.html` — privacy policy (store submission URL)
+- `terms.html` — terms of use (store submission URL)
+- `style.css` — shared styles (matches the app's dark minimalist theme)
+- `icon.png` — app icon (add before release)
 
 > This repository is **public**. No secrets, no internal docs — only the site content.
 
-Content (landing + privacy + terms) is built in Milestone 03 (`wod-timer-core/.claude/milestones/03-widget-watch-store.md`).
+## Publishing
+
+GitHub Pages → Settings → Pages → Deploy from branch `main`, root `/`. The site is plain static HTML — no build step.
+
+## Store URLs
+
+Once published, use these as the app-store metadata links:
+
+- Privacy Policy: `https://tonixhaker.github.io/wod-timer-legal/privacy.html`
+- Terms of Use: `https://tonixhaker.github.io/wod-timer-legal/terms.html`
+
+Replace the placeholder store badges in `index.html` with real App Store / Google Play URLs at release.
