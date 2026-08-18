@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="hero-shot">
-        <img data-shot="work" src="img/en-work.png" alt="WOD Clock workout screen" />
+        <img data-shot="work" src="img/en-retro-work.png" alt="WOD Clock workout screen" />
       </div>
     </section>
 
@@ -71,17 +71,17 @@
       <h2 data-i18n="howTitle">HOW IT WORKS</h2>
       <div class="steps">
         <div class="step">
-          <img data-shot="onboarding" src="img/en-onboarding.png" alt="Style chooser" loading="lazy" />
+          <img data-shot="onboarding" src="img/en-retro-onboarding.png" alt="Style chooser" loading="lazy" />
           <h3><span class="n">1</span><span data-i18n="s1t">Pick a style, set the timer</span></h3>
           <p data-i18n="s1p">Choose one of four looks on first launch, then pick a timer and spin the wheels — rounds, work, rest. Save presets for your favourite workouts.</p>
         </div>
         <div class="step">
-          <img data-shot="rest" src="img/en-rest.png" alt="Rest phase" loading="lazy" />
+          <img data-shot="rest" src="img/en-retro-rest.png" alt="Rest phase" loading="lazy" />
           <h3><span class="n">2</span><span data-i18n="s2t">Follow the voice</span></h3>
           <p data-i18n="s2p">3‑2‑1 countdown, round announcements, half‑time, rest calls and a proper “Well done!” — in English or Ukrainian. The screen is readable from across the gym.</p>
         </div>
         <div class="step">
-          <img data-shot="result" src="img/en-result.png" alt="Workout results" loading="lazy" />
+          <img data-shot="result" src="img/en-retro-result.png" alt="Workout results" loading="lazy" />
           <h3><span class="n">3</span><span data-i18n="s3t">See what you did</span></h3>
           <p data-i18n="s3p">Every session lands in your log: result, round splits, notes. All stored on your device.</p>
         </div>
@@ -91,8 +91,8 @@
     <section>
       <h2 data-i18n="watchTitle">ON YOUR WRIST</h2>
       <div class="watch-shots">
-        <img data-shot="watch-run" src="img/en-watch-run.png" alt="WOD Clock on Apple Watch" loading="lazy" />
-        <img data-shot="watch-menu" src="img/en-watch-menu.png" alt="Timer modes on Apple Watch" loading="lazy" />
+        <img data-shot="watch-run" src="img/en-retro-watch-run.png" alt="WOD Clock on Apple Watch" loading="lazy" />
+        <img data-shot="watch-menu" src="img/en-retro-watch-menu.png" alt="Timer modes on Apple Watch" loading="lazy" />
         <p data-i18n="watchText">A standalone Apple Watch app: the same timers, the same voice, plus haptics on every round. Leave the phone in the locker — the watch keeps the screen awake for the whole workout.</p>
       </div>
     </section>
@@ -135,6 +135,7 @@
         document.querySelectorAll(".style-btn").forEach(function (b) {
           b.setAttribute("aria-pressed", String(b === btn));
         });
+        if (window.wodApplyShots) window.wodApplyShots(style);
       });
       document.querySelectorAll(".style-btn").forEach(function (b) {
         b.setAttribute("aria-pressed", String(b.dataset.style === saved));
@@ -191,9 +192,13 @@
         if (value) el.textContent = value;
       });
     }
-    document.querySelectorAll("[data-shot]").forEach((img) => {
-      img.src = "img/" + lang + "-" + img.dataset.shot + ".png";
-    });
+    // Screenshots follow the picked style as well as the language.
+    window.wodApplyShots = function (style) {
+      document.querySelectorAll("[data-shot]").forEach((img) => {
+        img.src = "img/" + lang + "-" + style + "-" + img.dataset.shot + ".png";
+      });
+    };
+    window.wodApplyShots(document.documentElement.getAttribute("data-theme") || "retro");
     document.querySelectorAll("nav.lang a, footer a[href^='privacy'], footer a[href^='terms']").forEach((a) => {
       if (a.id) return;
       a.href = a.getAttribute("href").split("?")[0] + "?lang=" + lang;
