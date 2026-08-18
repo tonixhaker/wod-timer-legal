@@ -21,7 +21,7 @@
     <section class="hero" style="border-top:none">
       <div>
         <h1><span data-i18n="heroA">WOD CLOCK:</span><br /><span class="red" data-i18n="heroB">PERSONAL TIMER</span></h1>
-        <p class="sub" data-i18n="heroSub">A minimalist workout timer with a voice in your corner. Counts you in, announces rounds, calls the rest — you just train. Fully offline, on iPhone and Apple Watch.</p>
+        <p class="sub" data-i18n="heroSub">A minimalist workout timer with a voice in your corner. Counts you in, announces rounds, calls the rest — you just train. Four visual styles, fully offline, on iPhone and Apple Watch.</p>
         <div class="pills">
           <span class="pill">AMRAP</span>
           <span class="pill">FOR TIME</span>
@@ -48,9 +48,9 @@
       <h2 data-i18n="howTitle">HOW IT WORKS</h2>
       <div class="steps">
         <div class="step">
-          <img data-shot="config" src="img/en-config.png" alt="Timer configuration" loading="lazy" />
-          <h3><span class="n">1</span><span data-i18n="s1t">Set it in seconds</span></h3>
-          <p data-i18n="s1p">Pick a timer, spin the wheels — rounds, work, rest. Save presets for your favourite workouts.</p>
+          <img data-shot="onboarding" src="img/en-onboarding.png" alt="Style chooser" loading="lazy" />
+          <h3><span class="n">1</span><span data-i18n="s1t">Pick a style, set the timer</span></h3>
+          <p data-i18n="s1p">Choose one of four looks on first launch, then pick a timer and spin the wheels — rounds, work, rest. Save presets for your favourite workouts.</p>
         </div>
         <div class="step">
           <img data-shot="rest" src="img/en-rest.png" alt="Rest phase" loading="lazy" />
@@ -66,6 +66,15 @@
     </section>
 
     <section>
+      <h2 data-i18n="watchTitle">ON YOUR WRIST</h2>
+      <div class="watch-shots">
+        <img data-shot="watch-run" src="img/en-watch-run.png" alt="WOD Clock on Apple Watch" loading="lazy" />
+        <img data-shot="watch-menu" src="img/en-watch-menu.png" alt="Timer modes on Apple Watch" loading="lazy" />
+        <p data-i18n="watchText">A standalone Apple Watch app: the same timers, the same voice, plus haptics on every round. Leave the phone in the locker — the watch keeps the screen awake for the whole workout.</p>
+      </div>
+    </section>
+
+    <section>
       <h2 data-i18n="featTitle">BUILT FOR THE GYM FLOOR</h2>
       <ul class="features">
         <li><strong data-i18n="f1t">Voice cues that coach you</strong><span data-i18n="f1p">Countdown, rounds, half‑time, last round, rest, finish — the voice follows your app language.</span></li>
@@ -73,6 +82,7 @@
         <li><strong data-i18n="f3t">Apple Watch app</strong><span data-i18n="f3p">A standalone watch timer with the same sounds and haptic cues — leave the phone in the locker.</span></li>
         <li><strong data-i18n="f4t">MIX — build your own flow</strong><span data-i18n="f4p">Chain AMRAP, Tabata, work and rest blocks; repeat the whole flow. One timer runs it all.</span></li>
         <li><strong data-i18n="f5t">Partner / Relay</strong><span data-i18n="f5p">2–4 athletes rotating by rounds with per‑partner voice callouts and separate results.</span></li>
+        <li><strong data-i18n="f7t">Four styles, one timer</strong><span data-i18n="f7p">Brutal, Retro Sport, Terminal or Dzen — pick the look during onboarding and switch it anytime. The lock-screen plaque and the watch follow along.</span></li>
         <li><strong data-i18n="f6t">Private by design</strong><span data-i18n="f6p">Fully offline. No account, no analytics, no tracking — your workouts never leave your device.</span></li>
       </ul>
       <p class="free-note" data-i18n="freeNote">■ COMPLETELY FREE — EVERY TIMER, EVERY MODE. NO ADS, NO SUBSCRIPTIONS.</p>
@@ -93,16 +103,18 @@
       uk: {
         heroA: "WOD CLOCK:",
         heroB: "PERSONAL TIMER",
-        heroSub: "Мінімалістичний таймер тренувань з голосом тренера. Відлічує старт, оголошує раунди, кличе на відпочинок — ти просто тренуєшся. Повністю офлайн, на iPhone та Apple Watch.",
+        heroSub: "Мінімалістичний таймер тренувань з голосом тренера. Відлічує старт, оголошує раунди, кличе на відпочинок — ти просто тренуєшся. Чотири візуальні стилі, повністю офлайн, на iPhone та Apple Watch.",
         storeIosSmall: "Завантажуй в",
         soon: "Google Play — незабаром",
         howTitle: "ЯК ЦЕ ПРАЦЮЄ",
-        s1t: "Налаштуй за секунди",
-        s1p: "Обери таймер, покрути колеса — раунди, робота, відпочинок. Зберігай пресети улюблених тренувань.",
+        s1t: "Обери стиль і налаштуй",
+        s1p: "Обери один із чотирьох стилів на першому запуску, далі — таймер і колеса: раунди, робота, відпочинок. Зберігай пресети.",
         s2t: "Слухай голос",
         s2p: "Відлік 3‑2‑1, оголошення раундів, половина часу, відпочинок і чесне «Молодець!» — українською або англійською. Екран видно з іншого кінця залу.",
         s3t: "Дивись результат",
         s3p: "Кожна сесія у журналі: результат, спліти раундів, нотатки. Все зберігається на твоєму пристрої.",
+        watchTitle: "НА ЗАП'ЯСТІ",
+        watchText: "Самостійний застосунок для Apple Watch: ті самі таймери, той самий голос і хаптика на кожному раунді. Телефон можна лишити в шафці — годинник тримає екран активним усе тренування.",
         featTitle: "СТВОРЕНО ДЛЯ ЗАЛУ",
         f1t: "Голосові підказки",
         f1p: "Відлік, раунди, половина часу, останній раунд, відпочинок, фініш — голос відповідає мові застосунку.",
@@ -114,6 +126,8 @@
         f4p: "Поєднуй AMRAP, Табату, роботу та відпочинок; повторюй увесь потік. Один таймер веде все.",
         f5t: "Партнер / Естафета",
         f5p: "2–4 атлети по черзі, голосові оголошення для кожного і окремі результати.",
+        f7t: "Чотири стилі, один таймер",
+        f7p: "Brutal, Retro Sport, Terminal чи Dzen — обери вигляд під час онбордингу і міняй будь-коли. Плашка на екрані блокування та годинник підхоплюють стиль.",
         f6t: "Приватність за замовчуванням",
         f6p: "Повністю офлайн. Без акаунтів, аналітики й трекінгу — тренування не покидають твій пристрій.",
         freeNote: "■ ПОВНІСТЮ БЕЗКОШТОВНО — КОЖЕН ТАЙМЕР, КОЖЕН РЕЖИМ. БЕЗ РЕКЛАМИ Й ПІДПИСОК.",

@@ -158,3 +158,22 @@ footer a:hover { color: var(--red); }
   .features { grid-template-columns: 1fr; }
   .hero h1 { font-size: 32px; }
 }
+
+.watch-shots {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.watch-shots img {
+  width: 190px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #000;
+}
+.watch-shots p {
+  flex: 1;
+  min-width: 260px;
+  color: var(--muted);
+  font-size: 15px;
+}
