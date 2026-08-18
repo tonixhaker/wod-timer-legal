@@ -44,6 +44,29 @@
       </div>
     </section>
 
+    <section id="styles">
+      <h2 data-i18n="pickTitle">PICK YOUR STYLE</h2>
+      <p class="sub" data-i18n="pickSub" style="color:var(--muted); margin:-10px 0 18px;">The app ships with four looks — try them right here, the page follows your pick.</p>
+      <div class="style-picker">
+        <button class="style-btn" data-style="retro" aria-pressed="true">
+          <span class="swatches"><span class="sw" style="background:#f5efe0"></span><span class="sw" style="background:#e8642c"></span><span class="sw" style="background:#1e3a5f"></span></span>
+          <span class="nm">Retro Sport</span>
+        </button>
+        <button class="style-btn" data-style="brutal" aria-pressed="false">
+          <span class="swatches"><span class="sw" style="background:#0b0b0b"></span><span class="sw" style="background:#e24b4a"></span><span class="sw" style="background:#e8e4dc"></span></span>
+          <span class="nm">Brutal</span>
+        </button>
+        <button class="style-btn" data-style="terminal" aria-pressed="false">
+          <span class="swatches"><span class="sw" style="background:#0a0f0a"></span><span class="sw" style="background:#33ff66"></span><span class="sw" style="background:#1d3a1d"></span></span>
+          <span class="nm">Terminal</span>
+        </button>
+        <button class="style-btn" data-style="dzen" aria-pressed="false">
+          <span class="swatches"><span class="sw" style="background:#fafaf8"></span><span class="sw" style="background:#2a2a2a"></span><span class="sw" style="background:#eceae4"></span></span>
+          <span class="nm">Dzen</span>
+        </button>
+      </div>
+    </section>
+
     <section>
       <h2 data-i18n="howTitle">HOW IT WORKS</h2>
       <div class="steps">
@@ -99,6 +122,26 @@
   </div>
 
   <script>
+    // Site style follows the app's four looks; Retro Sport is the default.
+    (function () {
+      var saved = localStorage.getItem("wodStyle") || "retro";
+      document.documentElement.setAttribute("data-theme", saved);
+      document.addEventListener("click", function (e) {
+        var btn = e.target.closest ? e.target.closest(".style-btn") : null;
+        if (!btn) return;
+        var style = btn.dataset.style;
+        document.documentElement.setAttribute("data-theme", style);
+        localStorage.setItem("wodStyle", style);
+        document.querySelectorAll(".style-btn").forEach(function (b) {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+      });
+      document.querySelectorAll(".style-btn").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.style === saved));
+      });
+    })();
+  </script>
+  <script>
     const dict = {
       uk: {
         heroA: "WOD CLOCK:",
@@ -134,6 +177,8 @@
         footPrivacy: "Політика конфіденційності",
         footTerms: "Умови використання",
         footSupport: "Підтримка",
+        pickTitle: "ОБЕРИ СВІЙ СТИЛЬ",
+        pickSub: "У застосунку чотири вигляди — спробуй їх просто тут, сторінка підхопить твій вибір.",
       },
     };
     const params = new URLSearchParams(location.search);

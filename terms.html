@@ -88,6 +88,26 @@
   </div>
 
   <script>
+    // Site style follows the app's four looks; Retro Sport is the default.
+    (function () {
+      var saved = localStorage.getItem("wodStyle") || "retro";
+      document.documentElement.setAttribute("data-theme", saved);
+      document.addEventListener("click", function (e) {
+        var btn = e.target.closest ? e.target.closest(".style-btn") : null;
+        if (!btn) return;
+        var style = btn.dataset.style;
+        document.documentElement.setAttribute("data-theme", style);
+        localStorage.setItem("wodStyle", style);
+        document.querySelectorAll(".style-btn").forEach(function (b) {
+          b.setAttribute("aria-pressed", String(b === btn));
+        });
+      });
+      document.querySelectorAll(".style-btn").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.style === saved));
+      });
+    })();
+  </script>
+  <script>
     const lang = new URLSearchParams(location.search).get("lang") === "uk" ? "uk" : "en";
     document.getElementById(lang === "uk" ? "en" : "uk").hidden = true;
     document.getElementById("lang-" + lang).classList.add("on");
