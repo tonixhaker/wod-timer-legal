@@ -3,58 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WOD Clock — voice-coached workout timer</title>
-  <meta name="description" content="WOD Clock — a minimalist WOD timer with voice cues: AMRAP, For Time, EMOM, Tabata, Stopwatch, custom Mix flows and Partner relay mode. English and Ukrainian. Fully offline." />
+  <title>WOD Clock: Personal Timer</title>
+  <meta name="description" content="WOD Clock: Personal Timer — a minimalist workout timer with voice cues: AMRAP, For Time, EMOM, Tabata, Stopwatch, custom Mix flows and Partner relay. English and Ukrainian. Fully offline." />
   <link rel="icon" href="icon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
-    <header class="hero">
-      <h1>WOD Clock</h1>
-      <p class="tagline">A minimalist workout timer with a voice in your corner.<br />Fully offline. English &amp; Ukrainian.</p>
-      <div class="pills">
-        <span class="pill amrap">AMRAP</span>
-        <span class="pill fortime">FOR TIME</span>
-        <span class="pill emom">EMOM</span>
-        <span class="pill tabata">TABATA</span>
-        <span class="pill stopwatch">STOPWATCH</span>
-        <span class="pill mix">MIX</span>
-        <span class="pill partner">PARTNER</span>
-      </div>
-      <div class="stores">
-        <!-- TODO: replace with real store URLs at release -->
-        <a class="store-badge" href="#">App Store — coming soon</a>
-        <a class="store-badge" href="#">Google Play — coming soon</a>
-      </div>
+    <header class="site">
+      <img src="icon.png" alt="WOD Clock icon" />
+      <div class="name"><a href="./">WOD CLOCK</a></div>
+      <nav class="lang">
+        <a href="?lang=en" id="lang-en">EN</a><a href="?lang=uk" id="lang-uk">UA</a>
+      </nav>
     </header>
 
-    <main>
-      <section>
-        <h2>Built for the gym floor</h2>
-        <ul class="features">
-          <li><strong>Voice cues that coach you</strong>3‑2‑1 countdown, round announcements, half‑time, last round, rest, and a proper “Finish — well done!” — in English or Ukrainian, following your app language.</li>
-          <li><strong>Every classic timer</strong>AMRAP, For Time with a time cap, EMOM / E2MOM / E3MOM, Tabata with sets, and a plain stopwatch. Big digits you can read from across the box.</li>
-          <li><strong>Survives your phone</strong>Lock the screen or switch apps mid‑workout — the timer stays exact and key rounds arrive as notifications.</li>
-          <li><strong>Workout log</strong>Every session saved on your device: results, round splits, notes, monthly summaries.</li>
-          <li><strong>MIX — build your own flow</strong>Chain AMRAP, Tabata, work and rest blocks, repeat the whole flow — one timer runs it all.</li>
-          <li><strong>Partner / Relay</strong>2–4 athletes rotating by rounds with per‑partner voice callouts and separate results.</li>
-        </ul>
-        <p class="premium-note">Completely free. Every timer, every mode — no ads, no subscriptions, ever.</p>
-      </section>
+    <section class="hero" style="border-top:none">
+      <div>
+        <h1><span data-i18n="heroA">WOD CLOCK:</span><br /><span class="red" data-i18n="heroB">PERSONAL TIMER</span></h1>
+        <p class="sub" data-i18n="heroSub">A minimalist workout timer with a voice in your corner. Counts you in, announces rounds, calls the rest — you just train. Fully offline, on iPhone and Apple Watch.</p>
+        <div class="pills">
+          <span class="pill">AMRAP</span>
+          <span class="pill">FOR TIME</span>
+          <span class="pill">EMOM</span>
+          <span class="pill">TABATA</span>
+          <span class="pill">STOPWATCH</span>
+          <span class="pill">MIX</span>
+          <span class="pill">PARTNER</span>
+        </div>
+        <div class="stores">
+          <a class="store-badge" href="https://apps.apple.com/app/id6802254806" aria-label="App Store">
+            <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.9-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small data-i18n="storeIosSmall">Download on the</small><b>App Store</b></span>
+          </a>
+          <span class="soon" data-i18n="soon">Google Play — coming soon</span>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <img data-shot="work" src="img/en-work.png" alt="WOD Clock workout screen" />
+      </div>
+    </section>
 
-      <section>
-        <h2>Private by design</h2>
-        <p>WOD Clock works completely offline. No account, no tracking, no analytics — your workouts never leave your phone. <a href="privacy.html">Read the privacy policy</a>.</p>
-      </section>
-    </main>
+    <section>
+      <h2 data-i18n="howTitle">HOW IT WORKS</h2>
+      <div class="steps">
+        <div class="step">
+          <img data-shot="config" src="img/en-config.png" alt="Timer configuration" loading="lazy" />
+          <h3><span class="n">1</span><span data-i18n="s1t">Set it in seconds</span></h3>
+          <p data-i18n="s1p">Pick a timer, spin the wheels — rounds, work, rest. Save presets for your favourite workouts.</p>
+        </div>
+        <div class="step">
+          <img data-shot="rest" src="img/en-rest.png" alt="Rest phase" loading="lazy" />
+          <h3><span class="n">2</span><span data-i18n="s2t">Follow the voice</span></h3>
+          <p data-i18n="s2p">3‑2‑1 countdown, round announcements, half‑time, rest calls and a proper “Well done!” — in English or Ukrainian. The screen is readable from across the gym.</p>
+        </div>
+        <div class="step">
+          <img data-shot="result" src="img/en-result.png" alt="Workout results" loading="lazy" />
+          <h3><span class="n">3</span><span data-i18n="s3t">See what you did</span></h3>
+          <p data-i18n="s3p">Every session lands in your log: result, round splits, notes. All stored on your device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="featTitle">BUILT FOR THE GYM FLOOR</h2>
+      <ul class="features">
+        <li><strong data-i18n="f1t">Voice cues that coach you</strong><span data-i18n="f1p">Countdown, rounds, half‑time, last round, rest, finish — the voice follows your app language.</span></li>
+        <li><strong data-i18n="f2t">Lock screen &amp; Dynamic Island</strong><span data-i18n="f2p">Minimize the app — the timer lives on your lock screen with pause and stop right there. Sounds keep playing in the background.</span></li>
+        <li><strong data-i18n="f3t">Apple Watch app</strong><span data-i18n="f3p">A standalone watch timer with the same sounds and haptic cues — leave the phone in the locker.</span></li>
+        <li><strong data-i18n="f4t">MIX — build your own flow</strong><span data-i18n="f4p">Chain AMRAP, Tabata, work and rest blocks; repeat the whole flow. One timer runs it all.</span></li>
+        <li><strong data-i18n="f5t">Partner / Relay</strong><span data-i18n="f5p">2–4 athletes rotating by rounds with per‑partner voice callouts and separate results.</span></li>
+        <li><strong data-i18n="f6t">Private by design</strong><span data-i18n="f6p">Fully offline. No account, no analytics, no tracking — your workouts never leave your device.</span></li>
+      </ul>
+      <p class="free-note" data-i18n="freeNote">■ COMPLETELY FREE — EVERY TIMER, EVERY MODE. NO ADS, NO SUBSCRIPTIONS.</p>
+    </section>
 
     <footer>
       <p>
-        <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a> · <a href="mailto:tonixhaker@gmail.com">Support</a>
+        <a href="privacy.html" data-i18n="footPrivacy">Privacy Policy</a> ·
+        <a href="terms.html" data-i18n="footTerms">Terms of Use</a> ·
+        <a href="mailto:tonixhaker@gmail.com" data-i18n="footSupport">Support</a>
       </p>
-      <p>© 2026 Anton Danilov</p>
+      <p>© 2026 <a href="https://tonixhaker.github.io/about">Anton Danilov</a></p>
     </footer>
   </div>
+
+  <script>
+    const dict = {
+      uk: {
+        heroA: "WOD CLOCK:",
+        heroB: "PERSONAL TIMER",
+        heroSub: "Мінімалістичний таймер тренувань з голосом тренера. Відлічує старт, оголошує раунди, кличе на відпочинок — ти просто тренуєшся. Повністю офлайн, на iPhone та Apple Watch.",
+        storeIosSmall: "Завантажуй в",
+        soon: "Google Play — незабаром",
+        howTitle: "ЯК ЦЕ ПРАЦЮЄ",
+        s1t: "Налаштуй за секунди",
+        s1p: "Обери таймер, покрути колеса — раунди, робота, відпочинок. Зберігай пресети улюблених тренувань.",
+        s2t: "Слухай голос",
+        s2p: "Відлік 3‑2‑1, оголошення раундів, половина часу, відпочинок і чесне «Молодець!» — українською або англійською. Екран видно з іншого кінця залу.",
+        s3t: "Дивись результат",
+        s3p: "Кожна сесія у журналі: результат, спліти раундів, нотатки. Все зберігається на твоєму пристрої.",
+        featTitle: "СТВОРЕНО ДЛЯ ЗАЛУ",
+        f1t: "Голосові підказки",
+        f1p: "Відлік, раунди, половина часу, останній раунд, відпочинок, фініш — голос відповідає мові застосунку.",
+        f2t: "Екран блокування і Dynamic Island",
+        f2p: "Згорни застосунок — таймер живе на екрані блокування з паузою та стопом. Звуки грають у фоні.",
+        f3t: "Застосунок для Apple Watch",
+        f3p: "Самостійний таймер на годиннику з тими самими звуками та хаптикою — телефон можна лишити в шафці.",
+        f4t: "MIX — власний потік",
+        f4p: "Поєднуй AMRAP, Табату, роботу та відпочинок; повторюй увесь потік. Один таймер веде все.",
+        f5t: "Партнер / Естафета",
+        f5p: "2–4 атлети по черзі, голосові оголошення для кожного і окремі результати.",
+        f6t: "Приватність за замовчуванням",
+        f6p: "Повністю офлайн. Без акаунтів, аналітики й трекінгу — тренування не покидають твій пристрій.",
+        freeNote: "■ ПОВНІСТЮ БЕЗКОШТОВНО — КОЖЕН ТАЙМЕР, КОЖЕН РЕЖИМ. БЕЗ РЕКЛАМИ Й ПІДПИСОК.",
+        footPrivacy: "Політика конфіденційності",
+        footTerms: "Умови використання",
+        footSupport: "Підтримка",
+      },
+    };
+    const params = new URLSearchParams(location.search);
+    const lang = params.get("lang") === "uk" ? "uk" : "en";
+    document.getElementById("lang-" + lang).classList.add("on");
+    if (lang === "uk") {
+      document.documentElement.lang = "uk";
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const value = dict.uk[el.dataset.i18n];
+        if (value) el.textContent = value;
+      });
+    }
+    document.querySelectorAll("[data-shot]").forEach((img) => {
+      img.src = "img/" + lang + "-" + img.dataset.shot + ".png";
+    });
+    document.querySelectorAll("nav.lang a, footer a[href^='privacy'], footer a[href^='terms']").forEach((a) => {
+      if (a.id) return;
+      a.href = a.getAttribute("href").split("?")[0] + "?lang=" + lang;
+    });
+  </script>
 </body>
 </html>

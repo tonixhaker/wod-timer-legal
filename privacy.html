@@ -3,19 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy Policy — WOD Clock</title>
+  <title>Privacy Policy — WOD Clock: Personal Timer</title>
   <link rel="icon" href="icon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
-    <a class="back" href="index.html">← WOD Clock</a>
-    <article>
+    <header class="site">
+      <img src="icon.png" alt="WOD Clock icon" />
+      <div class="name"><a href="./">WOD CLOCK</a></div>
+      <nav class="lang">
+        <a href="privacy.html?lang=en" id="lang-en">EN</a><a href="privacy.html?lang=uk" id="lang-uk">UA</a>
+      </nav>
+    </header>
+
+    <article class="card" id="en" lang="en">
       <h1>Privacy Policy</h1>
       <p class="updated">Last updated: August 18, 2026</p>
 
       <h2>The short version</h2>
-      <p>WOD Clock is a fully offline app. We do not collect, store, transmit, sell, or share any personal data. There are no accounts, no analytics, no advertising, and no third‑party tracking of any kind.</p>
+      <p>WOD Clock: Personal Timer is a fully offline app. We do not collect, store, transmit, sell, or share any personal data. There are no accounts, no analytics, no advertising, and no third‑party tracking of any kind.</p>
 
       <h2>Data stored on your device</h2>
       <p>The app keeps the following data locally on your device only:</p>
@@ -26,8 +33,11 @@
       </ul>
       <p>This data never leaves your device through the app. Deleting the app deletes all of it. It may be included in your device backups (iCloud / Google), which are governed by Apple's and Google's own policies.</p>
 
-      <h2>Notifications</h2>
-      <p>If you allow notifications, the app schedules local notifications on your device to announce workout events (round starts, rest, finish) while the app is in the background. These notifications are generated on‑device and involve no server.</p>
+      <h2>Lock screen &amp; Live Activities</h2>
+      <p>While a workout is running, the app shows a Live Activity with the timer on your lock screen and in the Dynamic Island. It is rendered entirely on your device and involves no server.</p>
+
+      <h2>Apple Watch and Health access</h2>
+      <p>The Apple Watch app asks for Health (workout) permission for one purpose only: starting a workout session keeps the timer, sounds, and screen active on your wrist for the whole workout. The app does not read your health data and writes nothing to Health.</p>
 
       <h2>Microphone, camera, location</h2>
       <p>The app does not request or use the microphone, camera, contacts, or location.</p>
@@ -41,9 +51,55 @@
       <h2>Contact</h2>
       <p>Questions about privacy: <a href="mailto:tonixhaker@gmail.com">tonixhaker@gmail.com</a></p>
     </article>
+
+    <article class="card" id="uk" lang="uk">
+      <h1>Політика конфіденційності</h1>
+      <p class="updated">Оновлено: 18 серпня 2026</p>
+
+      <h2>Коротко</h2>
+      <p>WOD Clock: Personal Timer — повністю офлайновий застосунок. Ми не збираємо, не зберігаємо, не передаємо, не продаємо і не поширюємо жодних персональних даних. Немає акаунтів, аналітики, реклами чи стороннього трекінгу.</p>
+
+      <h2>Дані на вашому пристрої</h2>
+      <p>Застосунок зберігає такі дані лише локально на вашому пристрої:</p>
+      <ul>
+        <li>Налаштування таймерів і створені вами пресети.</li>
+        <li>Журнал тренувань: результати, спліти раундів, нотатки.</li>
+        <li>Налаштування застосунку (мова, звук).</li>
+      </ul>
+      <p>Ці дані ніколи не покидають ваш пристрій через застосунок. Видалення застосунку видаляє їх усі. Вони можуть потрапляти до резервних копій пристрою (iCloud / Google), які регулюються політиками Apple та Google.</p>
+
+      <h2>Екран блокування та Live Activities</h2>
+      <p>Під час тренування застосунок показує Live Activity з таймером на екрані блокування та в Dynamic Island. Вона відображається повністю на пристрої, без серверів.</p>
+
+      <h2>Apple Watch і доступ до «Здоров'я»</h2>
+      <p>Застосунок для Apple Watch запитує дозвіл «Здоров'я» (тренування) з єдиною метою: запуск сесії тренування тримає таймер, звуки та екран активними на весь час тренування. Застосунок не читає ваші дані здоров'я і нічого не записує до «Здоров'я».</p>
+
+      <h2>Мікрофон, камера, геолокація</h2>
+      <p>Застосунок не запитує і не використовує мікрофон, камеру, контакти чи геолокацію.</p>
+
+      <h2>Діти</h2>
+      <p>Застосунок не збирає дані ні від кого, включно з дітьми.</p>
+
+      <h2>Зміни</h2>
+      <p>Якщо ця політика колись зміниться (наприклад, якщо майбутня версія додасть онлайн‑функції), оновлена версія буде опублікована на цій сторінці з новою датою до набуття чинності.</p>
+
+      <h2>Контакти</h2>
+      <p>Питання щодо конфіденційності: <a href="mailto:tonixhaker@gmail.com">tonixhaker@gmail.com</a></p>
+    </article>
+
     <footer>
-      <p><a href="index.html">WOD Clock</a> · <a href="terms.html">Terms of Use</a></p>
+      <p><a href="index.html">WOD Clock</a> · <a href="terms.html" id="foot-terms">Terms of Use</a></p>
+      <p>© 2026 <a href="https://tonixhaker.github.io/about">Anton Danilov</a></p>
     </footer>
   </div>
+
+  <script>
+    const lang = new URLSearchParams(location.search).get("lang") === "uk" ? "uk" : "en";
+    document.getElementById(lang === "uk" ? "en" : "uk").hidden = true;
+    document.getElementById("lang-" + lang).classList.add("on");
+    document.documentElement.lang = lang;
+    document.getElementById("foot-terms").href = "terms.html?lang=" + lang;
+    if (lang === "uk") document.getElementById("foot-terms").textContent = "Умови використання";
+  </script>
 </body>
 </html>
