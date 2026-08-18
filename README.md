@@ -1,6 +1,6 @@
-# WOD Timer — Legal & Landing
+# WOD Clock — Legal & Landing
 
-Public site for the WOD Timer mobile app, served via GitHub Pages.
+Public site for the WOD Clock mobile app, served via GitHub Pages.
 
 - `index.html` — landing page
 - `privacy.html` — privacy policy (store submission URL)
