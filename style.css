@@ -165,7 +165,9 @@ nav.lang a.on { color: var(--red); border-color: var(--red); }
   color: var(--text);
   text-decoration: none;
 }
-.store-badge svg { width: 22px; height: 22px; fill: var(--text); }
+/* Google Play is not out yet: dimmed and non-interactive. */
+.store-badge.is-soon { opacity: 0.45; pointer-events: none; }
+.store-badge svg { width: 22px; height: 22px; fill: var(--text); flex: none; }
 .store-badge small { display: block; font-size: 10px; color: var(--muted); }
 .store-badge b { font-size: 15px; }
 .soon { color: var(--muted); font-size: 12px; font-family: var(--mono); }
