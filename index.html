@@ -44,7 +44,26 @@
         </div>
       </div>
       <div class="hero-shot">
-        <img data-shot="work" src="img/en-retro-work.png" alt="WOD Clock workout screen" />
+        <!-- Live mock: a real tabata runs here, drawn in the picked style. -->
+        <div class="phone" id="mock" role="img" aria-label="WOD Clock running a Tabata timer">
+          <div class="phone-status"><span>09:41</span><span class="signal"></span></div>
+          <div class="phone-body">
+            <div class="mock-chip" id="mockChip"></div>
+            <div class="mock-title">TABATA</div>
+            <div class="ring-wrap">
+              <svg viewBox="0 0 240 240" id="mockRing" aria-hidden="true"></svg>
+              <div class="ring-digits" id="mockDigits">00:20</div>
+            </div>
+            <div class="round-box">
+              <b id="mockRound">1/8</b>
+              <small data-i18n="mockRoundCaption">ROUND</small>
+            </div>
+            <div class="mock-rail">
+              <span class="mock-knob">›</span>
+              <span class="mock-rail-label" data-i18n="mockSwipe">SWIPE TO FINISH</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -185,11 +204,14 @@
         footSupport: "Підтримка",
         pickTitle: "ОБЕРИ СВІЙ СТИЛЬ",
         pickSub: "У застосунку чотири вигляди — спробуй їх просто тут, сторінка підхопить твій вибір.",
+        mockRoundCaption: "РАУНД",
+        mockSwipe: "СВАЙП ДЛЯ ЗАВЕРШЕННЯ",
       },
     };
     const params = new URLSearchParams(location.search);
     const lang = params.get("lang") === "uk" ? "uk" : "en";
     document.getElementById("lang-" + lang).classList.add("on");
+    window.wodMockRest = lang === "uk" ? "\u25A0 ВІДПОЧИНОК" : "\u25A0 REST";
     if (lang === "uk") {
       document.documentElement.lang = "uk";
       document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -208,6 +230,124 @@
       if (a.id) return;
       a.href = a.getAttribute("href").split("?")[0] + "?lang=" + lang;
     });
+  </script>
+  <script>
+    // A real (miniature) tabata engine: same segment logic as the app, drawn in
+    // whichever style is active. Purely decorative — nothing is stored.
+    (function () {
+      var ring = document.getElementById("mockRing");
+      var digits = document.getElementById("mockDigits");
+      var roundEl = document.getElementById("mockRound");
+      var chip = document.getElementById("mockChip");
+      var phone = document.getElementById("mock");
+      if (!ring) return;
+
+      var ROUNDS = 8, WORK = 20, REST = 10, COUNTDOWN = 3;
+      var segments = [{ kind: "countdown", dur: COUNTDOWN, round: 0 }];
+      for (var r = 1; r <= ROUNDS; r++) {
+        segments.push({ kind: "work", dur: WORK, round: r });
+        if (r < ROUNDS) segments.push({ kind: "rest", dur: REST, round: r });
+      }
+      var total = segments.reduce(function (a, s) { return a + s.dur; }, 0);
+
+      var SIZE = 240, C = SIZE / 2, variant = "", marks = [];
+
+      function css(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
+
+      // The ring is rebuilt whenever the style changes: ticks (brutal),
+      // dots (terminal) or a solid arc (retro, dzen).
+      function buildRing() {
+        var v = css("--ring") || "solid";
+        var w = parseFloat(css("--ring-w")) || 8;
+        if (v === variant) return;
+        variant = v;
+        marks = [];
+        ring.innerHTML = "";
+        var ns = "http://www.w3.org/2000/svg";
+        if (v === "solid") {
+          var r = C - w;
+          [["track", 1], ["lit", 0]].forEach(function (pair) {
+            var c = document.createElementNS(ns, "circle");
+            c.setAttribute("cx", C); c.setAttribute("cy", C); c.setAttribute("r", r);
+            c.setAttribute("stroke-width", w);
+            c.setAttribute("stroke-linecap", "round");
+            c.setAttribute("transform", "rotate(-90 " + C + " " + C + ")");
+            c.setAttribute("class", pair[0]);
+            ring.appendChild(c);
+          });
+          ring.dataset.circ = String(2 * Math.PI * r);
+        } else {
+          var count = v === "dots" ? 72 : 48;
+          var len = v === "dots" ? 6 : 18;
+          for (var i = 0; i < count; i++) {
+            var a = (i / count) * 2 * Math.PI - Math.PI / 2;
+            var line = document.createElementNS(ns, "line");
+            line.setAttribute("x1", C + (C - len) * Math.cos(a));
+            line.setAttribute("y1", C + (C - len) * Math.sin(a));
+            line.setAttribute("x2", C + (C - 2) * Math.cos(a));
+            line.setAttribute("y2", C + (C - 2) * Math.sin(a));
+            line.setAttribute("stroke-width", w);
+            line.setAttribute("class", "tick");
+            ring.appendChild(line);
+            marks.push(line);
+          }
+        }
+      }
+
+      function paint(frac) {
+        if (variant === "solid") {
+          var circ = parseFloat(ring.dataset.circ);
+          var lit = ring.querySelector(".lit");
+          if (lit) lit.setAttribute("stroke-dasharray", (circ * frac).toFixed(1) + " " + circ);
+        } else {
+          var on = Math.round(frac * marks.length);
+          for (var i = 0; i < marks.length; i++) {
+            marks[i].classList.toggle("on", i < on);
+          }
+        }
+      }
+
+      function clock(sec) {
+        var s = Math.max(0, Math.ceil(sec));
+        return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+      }
+
+      var start = performance.now();
+      function frame(now) {
+        buildRing();
+        var t = ((now - start) / 1000) % total;
+        var acc = 0, seg = segments[0];
+        for (var i = 0; i < segments.length; i++) {
+          if (t < acc + segments[i].dur) { seg = segments[i]; break; }
+          acc += segments[i].dur;
+        }
+        var elapsed = t - acc;
+        var remaining = seg.dur - elapsed;
+
+        phone.classList.toggle("resting", seg.kind === "rest");
+        chip.textContent = seg.kind === "rest" ? (window.wodMockRest || "■ REST") : "";
+        digits.textContent = seg.kind === "countdown" ? String(Math.max(1, Math.ceil(remaining))) : clock(remaining);
+        roundEl.textContent = Math.max(1, seg.round) + "/" + ROUNDS;
+        paint(elapsed / seg.dur);
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+
+    // Sections and cards fade in as they scroll into view.
+    (function () {
+      var targets = document.querySelectorAll("section, .step, .features li, .watch-shots img");
+      if (!("IntersectionObserver" in window)) return;
+      targets.forEach(function (el) { el.classList.add("reveal"); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -10% 0px" });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
   </script>
 </body>
 </html>
