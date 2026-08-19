@@ -306,8 +306,12 @@ body, .phone, .step, .features li, .style-btn, .store-badge, .pill, h2, .hero h1
 }
 
 .phone {
-  width: 300px;
+  width: 290px;
+  /* real phone proportions, so the mock reads as a device */
+  aspect-ratio: 9 / 19.5;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   border: var(--border-w) solid var(--line);
   border-radius: var(--phone-radius);
@@ -326,7 +330,16 @@ body, .phone, .step, .features li, .style-btn, .store-badge, .pill, h2, .hero h1
   linear-gradient(to right, var(--muted) 0 5px, transparent 5px 8px,
   var(--muted) 8px 13px, transparent 13px 16px, var(--muted) 16px 21px,
   transparent 21px 24px, var(--muted) 24px 34px); opacity: .8; }
-.phone-body { padding: 6px 18px 20px; text-align: center; }
+.phone-body {
+  flex: 1;
+  padding: 10px 18px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
 
 .mock-chip {
   height: 14px;
@@ -337,6 +350,7 @@ body, .phone, .step, .features li, .style-btn, .store-badge, .pill, h2, .hero h1
   text-transform: var(--case);
 }
 .mock-title {
+  margin-bottom: 2px;
   font-family: var(--display-font);
   font-weight: var(--display-weight);
   text-transform: var(--case);
@@ -345,8 +359,8 @@ body, .phone, .step, .features li, .style-btn, .store-badge, .pill, h2, .hero h1
   margin-bottom: 6px;
 }
 
-.ring-wrap { position: relative; width: 220px; margin: 0 auto; }
-.ring-wrap svg { width: 220px; height: 220px; display: block; }
+.ring-wrap { position: relative; width: 210px; margin: 6px auto 2px; }
+.ring-wrap svg { width: 210px; height: 210px; display: block; }
 .ring-digits {
   position: absolute;
   inset: 0;
@@ -383,7 +397,12 @@ body, .phone, .step, .features li, .style-btn, .store-badge, .pill, h2, .hero h1
 
 .mock-rail {
   position: relative;
+  width: 100%;
+  margin-top: auto;
   height: 46px;
+  /* keep the label clear of the resting knob */
+  padding-left: 50px;
+  padding-right: 8px;
   background: var(--card);
   border: var(--border-w) solid var(--line);
   border-radius: var(--radius);
